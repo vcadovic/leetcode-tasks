@@ -8,19 +8,29 @@ void Main()
 
 public int LengthOfLongestSubstring(string s)
 {
-	Dictionary<char, int> charToNextIndex = [];
-	int maxLen = 0, left = 0;
-	
-	for (int right = 0; right < s.Length; right++)
+	if (s.Length == 1) return 1;
+
+	List<char> usedSymbols = new();
+	int max = 0, current = 0;
+
+	for (int i = 0; i < s.Length; i++)
 	{
-		if (charToNextIndex.ContainsKey(s[right]))
+		int index = usedSymbols.IndexOf(s[i]);
+
+		if (index < 0)
 		{
-			left = Math.Max(charToNextIndex[s[right]], left);
+			current++;
+			usedSymbols.Add(s[i]);
+		}
+		else
+		{
+			usedSymbols.RemoveRange(0, index + 1);
+			usedSymbols.Add(s[i]);
+			current = usedSymbols.Count;
 		}
 
-		maxLen = Math.Max(maxLen, right - left + 1);
-		charToNextIndex[s[right]] = right + 1;
+		max = Math.Max(max, current);
 	}
 
-	return maxLen;
+	return max;
 }

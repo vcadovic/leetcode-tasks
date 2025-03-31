@@ -6,32 +6,21 @@ void Main()
 	LengthOfLongestSubstring(s).Dump();
 }
 
-// You can define other methods, fields, classes and namespaces here
 public int LengthOfLongestSubstring(string s)
 {
-	if (s.Length == 1) return 1;
+	Dictionary<char, int> charToNextIndex = [];
+	int maxLen = 0, left = 0;
 
-	List<char> usedSymbols = new();
-	int max = 0, current = 0;
-
-	for (int i = 0; i < s.Length; i++)
+	for (int right = 0; right < s.Length; right++)
 	{
-		int index = usedSymbols.IndexOf(s[i]);
-
-		if (index < 0)
+		if (charToNextIndex.ContainsKey(s[right]))
 		{
-			current++;
-			usedSymbols.Add(s[i]);
-		}
-		else
-		{
-			usedSymbols.RemoveRange(0, index + 1);
-			usedSymbols.Add(s[i]);
-			current = usedSymbols.Count;
+			left = Math.Max(charToNextIndex[s[right]], left);
 		}
 
-		max = Math.Max(max, current);
+		maxLen = Math.Max(maxLen, right - left + 1);
+		charToNextIndex[s[right]] = right + 1;
 	}
 
-	return max;
+	return maxLen;
 }
