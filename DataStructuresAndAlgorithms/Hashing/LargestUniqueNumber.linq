@@ -12,4 +12,4 @@ public int LargestUniqueNumber(int[] nums) => nums
 	.Where(g => g.Value == 1)
 	.Select(g => g.Key)
 	.DefaultIfEmpty(-1)
-	.Max(g => g);
+	.Max();
