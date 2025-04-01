@@ -13,13 +13,7 @@ public string MakeGood(string s)
 
 	foreach (char symbol in s)
 	{
-		char peek = stack.LastOrDefault();
-
-		if (peek == symbol)
-		{
-			stack.Add(peek);
-			continue;
-		}
+		char peek = stack.Count > 0 ? stack[stack.Count - 1] : default;
 
 		bool peekIsLower = char.IsLower(peek);
 		bool currentIsLower = char.IsLower(symbol);
