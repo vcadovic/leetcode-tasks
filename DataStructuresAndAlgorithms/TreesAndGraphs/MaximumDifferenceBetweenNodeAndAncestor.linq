@@ -1,5 +1,33 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 1026: Maximum Difference Between Node and Ancestor
+ * 
+ * Problem Description:
+ * Given the root of a binary tree, find the maximum value v for which there exist different nodes
+ * a and b where v = |a.val - b.val| and a is an ancestor of b.
+ * A node a is an ancestor of b if either: a is a parent of b or a is an ancestor of a parent of b.
+ * 
+ * Example: Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
+ *          Output: 7
+ *          Explanation: Various ancestor-node differences exist, maximum is |8 - 1| = 7
+ * 
+ * Solution Explanation:
+ * This solution uses DFS with a custom NodeResult struct to track min/max values:
+ * 1. For each node, calculate and propagate:
+ *    - Min: minimum value in the subtree (including current root)
+ *    - Max: maximum value in the subtree (including current root)
+ *    - MaxSum: maximum ancestor-descendant difference found in subtree
+ * 2. For leaf nodes: initialize with default values
+ * 3. For internal nodes:
+ *    - Collect min/max from both subtrees
+ *    - Calculate difference between current root and subtree extremes
+ *    - Compare with MaxSum from subtrees
+ *    - Propagate the overall maximum upward
+ * 4. Return MaxSum from root
+ * Time Complexity: O(n), Space Complexity: O(h) where h is tree height
+ */
+
 void Main()
 {
 	TreeNode root = new(8,

@@ -1,5 +1,35 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 76: Minimum Window Substring
+ * 
+ * Problem Description:
+ * Given two strings s and t of lengths m and n respectively, return the minimum window substring of s
+ * such that every character in t (including duplicates) is included in the window.
+ * If there is no such substring, return the empty string "".
+ * A substring is a contiguous sequence of characters within the string.
+ * 
+ * Example: Input: s = "ADOBECODEBANC", t = "ABC"
+ *          Output: "BANC"
+ *          Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+ * 
+ * Solution Explanation:
+ * This solution uses the sliding window technique with two pointers:
+ * 1. Preprocessing:
+ *    - Create frequency map for template characters
+ *    - Filter input to only include template-relevant characters with their indices
+ * 2. Expand window (right pointer):
+ *    - Add characters to window frequency map
+ *    - When a character's count matches template count, increment currentSymbolsInWindow
+ * 3. Contract window (left pointer) when all symbols found:
+ *    - Track minimum window size and its boundaries
+ *    - Remove characters from left until window becomes invalid
+ *    - This ensures we find the minimal window
+ * 4. Return the substring at tracked boundaries or empty string
+ * The optimization of filtering input reduces unnecessary iterations.
+ * Time Complexity: O(m + n), Space Complexity: O(m + n)
+ */
+
 void Main()
 {
 	string s = "aaaaaaaaaaaabbbbbcdd", t = "abcdd";

@@ -1,5 +1,30 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 270: Closest Binary Search Tree Value
+ * 
+ * Problem Description:
+ * Given the root of a binary search tree and a target value, return the value in the BST
+ * that is closest to the target. If there are multiple answers, return any of them.
+ * 
+ * Example: Input: root = [4,2,5,1,3], target = 3.714286
+ *          Output: 4
+ * 
+ * Solution Explanation:
+ * This solution leverages BST properties for efficient traversal:
+ * 1. Start at root, initialize closest with root value
+ * 2. At each node, calculate the difference between node value and target
+ * 3. Update closest if:
+ *    - Current difference is smaller, OR
+ *    - Differences are equal (within epsilon) and current value is smaller
+ * 4. Navigate using BST property:
+ *    - If target < node.val, go left (smaller values)
+ *    - Otherwise, go right (larger values)
+ * 5. Continue until reaching a leaf
+ * This avoids searching the entire tree, using BST ordering to prune paths.
+ * Time Complexity: O(h) where h is tree height, Space Complexity: O(1)
+ */
+
 void Main()
 {
 	TreeNode root = 

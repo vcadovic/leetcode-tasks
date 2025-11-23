@@ -1,5 +1,30 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 15: 3Sum
+ * 
+ * Problem Description:
+ * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that
+ * i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+ * Notice that the solution set must not contain duplicate triplets.
+ * 
+ * Example: Input: nums = [-1,0,1,2,-1,-4]
+ *          Output: [[-1,-1,2],[-1,0,1]]
+ * 
+ * Solution Explanation (Hash Map Approach):
+ * This solution reduces 3Sum to multiple 2Sum problems using hash maps:
+ * 1. For each element nums[i], find pairs in remaining elements that sum to -nums[i]
+ * 2. TwoSum helper function uses a hash map:
+ *    - Track seen numbers and their complements
+ *    - When a complement is found, store both numbers as a pair
+ *    - Use nullable int to distinguish between "seen but no pair" and "seen with pair"
+ * 3. Use HashSet with custom Chunk struct to eliminate duplicate triplets:
+ *    - Chunk implements IEquatable to compare sorted triplets
+ *    - GetHashCode provides consistent hashing for XOR-based deduplication
+ * 4. Return unique triplets as lists
+ * Time Complexity: O(n²), Space Complexity: O(n)
+ */
+
 void Main()
 {
 	int[] nums = [-1,0,1,0];

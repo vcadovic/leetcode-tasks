@@ -1,5 +1,29 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 1302: Deepest Leaves Sum
+ * 
+ * Problem Description:
+ * Given the root of a binary tree, return the sum of values of its deepest leaves.
+ * 
+ * Example: Input: root = [1,2,3,4,5,null,6,7,null,null,null,null,8]
+ *          Output: 15
+ *          Explanation: The deepest leaves are nodes with values 7 and 8, sum = 15
+ * 
+ * Solution Explanation:
+ * This solution uses BFS (level-order traversal) to identify the deepest level:
+ * 1. Use a queue for level-by-level traversal
+ * 2. For each level:
+ *    - Reset result to 0 (assuming current level might be deepest)
+ *    - Process all nodes at this level (using levelSize)
+ *    - Add all node values at this level to result
+ *    - Enqueue children for next level
+ * 3. When queue is empty, the last level processed was the deepest
+ * 4. Return the sum accumulated during the last level
+ * The key insight: keep overwriting result with each level's sum until no more levels exist.
+ * Time Complexity: O(n), Space Complexity: O(w) where w is maximum tree width
+ */
+
 void Main()
 {
 	TreeNode root = new(1,

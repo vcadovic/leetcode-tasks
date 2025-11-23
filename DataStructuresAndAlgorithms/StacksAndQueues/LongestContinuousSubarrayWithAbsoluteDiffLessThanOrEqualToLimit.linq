@@ -1,5 +1,30 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 1438: Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+ * 
+ * Problem Description:
+ * Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray
+ * such that the absolute difference between any two elements of this subarray is less than or equal to limit.
+ * 
+ * Example: Input: nums = [10,1,2,4,7,2], limit = 5
+ *          Output: 4
+ *          Explanation: The subarray [2,4,7,2] is the longest since the maximum absolute diff is |2-7| = 5 <= 5.
+ * 
+ * Solution Explanation:
+ * This solution uses two monotonic deques to efficiently track min and max in sliding window:
+ * 1. Maintain two monotonic deques:
+ *    - Increasing deque: tracks minimum values (smallest at front)
+ *    - Decreasing deque: tracks maximum values (largest at front)
+ * 2. For each element, add it to both deques (they maintain their monotonic property)
+ * 3. Check if max - min > limit:
+ *    - If yes, shrink window from left by removing elements from deques if they match left element
+ *    - Move left pointer forward
+ * 4. Track maximum window size
+ * Monotonic deques ensure O(1) access to min/max, avoiding O(k) for each window position.
+ * Time Complexity: O(n), Space Complexity: O(k) where k is the window size
+ */
+
 void Main()
 {
 	int[] nums = [10, 1, 2, 4, 7, 2];

@@ -1,5 +1,32 @@
 <Query Kind="Program" />
 
+/*
+ * LeetCode 111: Minimum Depth of Binary Tree
+ * 
+ * Problem Description:
+ * Given a binary tree, find its minimum depth.
+ * The minimum depth is the number of nodes along the shortest path from the root node
+ * down to the nearest leaf node.
+ * Note: A leaf is a node with no children.
+ * 
+ * Example: Input: root = [3,9,20,null,null,15,7]
+ *          Output: 2
+ *          Explanation: The shortest path is 3 -> 9 (2 nodes)
+ * 
+ * Solution Explanation:
+ * This solution uses recursive DFS with special handling for unbalanced trees:
+ * 1. Base case: if root is null, return 0
+ * 2. Handle unbalanced subtrees:
+ *    - If left is null: minimum depth is through right subtree + 1
+ *    - If right is null: minimum depth is through left subtree + 1
+ *    - This is crucial: a node with only one child is NOT a leaf
+ * 3. For nodes with both children:
+ *    - Recursively get depth of both subtrees
+ *    - Return minimum of the two + 1 (current node)
+ * 4. This correctly finds the depth to the nearest leaf (not just shortest path to null)
+ * Time Complexity: O(n), Space Complexity: O(h) where h is tree height
+ */
+
 void Main()
 {
 	TreeNode root = new(3,
